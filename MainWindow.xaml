@@ -7,6 +7,30 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Top" Width="695" Height="38" Margin="47,19,0,0" Grid.ColumnSpan="3" Grid.Row="0"/>
+        <MediaElement HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="775" Grid.ColumnSpan="3" Grid.Row="1" Margin="10,0,0,0" Grid.RowSpan="2" LoadedBehavior="Manual"/>
+        <Slider HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Width="780" Grid.ColumnSpan="3" Margin="0,26,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,56,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" Grid.Column="0"><Run Language="ru-ru" Text="Текущие секунды"/></TextBlock>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="121,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Height="18"><Run Language="ru-ru" Text="Сколько оосталось"/></TextBlock>
+        <Slider Grid.Column="2" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Top" Width="247" Margin="0,44,0,0"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="0,23,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="ru-ru" Text="Звук"/></TextBlock>
+        <Button Content="Button" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="80" Grid.Column="0"/>
+        <Button Content="Button" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="83" Margin="85,0,0,0" Grid.Column="0"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="173,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="84" Grid.Column="0"/>
+        <Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="118"/>
+        <Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="133,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="123"/>
+
     </Grid>
 </Window>
