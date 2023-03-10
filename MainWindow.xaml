@@ -18,19 +18,33 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Top" Width="695" Height="38" Margin="47,19,0,0" Grid.ColumnSpan="3" Grid.Row="0"/>
-        <MediaElement HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="775" Grid.ColumnSpan="3" Grid.Row="1" Margin="10,0,0,0" Grid.RowSpan="2" LoadedBehavior="Manual"/>
-        <Slider HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Width="780" Grid.ColumnSpan="3" Margin="0,26,0,0"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,56,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" Grid.Column="0"><Run Language="ru-ru" Text="Текущие секунды"/></TextBlock>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="121,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Height="18"><Run Language="ru-ru" Text="Сколько оосталось"/></TextBlock>
-        <Slider Grid.Column="2" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Top" Width="247" Margin="0,44,0,0"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="0,23,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="ru-ru" Text="Звук"/></TextBlock>
-        <Button Content="Button" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="80" Grid.Column="0"/>
-        <Button Content="Button" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="83" Margin="85,0,0,0" Grid.Column="0"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="173,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="84" Grid.Column="0"/>
-        <Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="118"/>
-        <Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="133,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="87" Width="123"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
 
+        </Grid.ColumnDefinitions>
+        <Button x:Name="Papka" Content="Выберите папку" Grid.ColumnSpan="6" Grid.Row="0" VerticalAlignment="Center" Click="Papka_Click"/>
+        <MediaElement x:Name="media" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" LoadedBehavior="Manual"/>
+        <Slider x:Name="Length_slide"  Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="5" ValueChanged="Length_slide_ValueChanged"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Grid.Column="0"><Run Language="ru-ru" Text="Текущие секунды"/></TextBlock>
+        <TextBlock Grid.Column="4" Grid.Row="3" VerticalAlignment="Center" ><Run Language="ru-ru" Text="Сколько оосталось"/></TextBlock>
+        <Slider x:Name="Volume_slide" Grid.Column="5"  Grid.Row="4" ValueChanged="Volume_slide_ValueChanged"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="4" ><Run Language="ru-ru" Text="Звук"/></TextBlock>
+        <Button x:Name="Previous" Grid.Row="4"  Grid.Column="0" Click="Previous_Click">
+            <Image Source="C:\Users\Настя\Pictures\rewind.png"></Image>
+        </Button>
+        <Button x:Name="Play_Pause" Grid.Row="4" Grid.Column="1" Click="Play_Pause_Click">
+            <Image Source="C:\Users\Настя\Pictures\play.png"></Image>
+        </Button>
+        <Button x:Name="Next" Grid.Row="4"  Grid.Column="2" Click="Next_Click">
+            <Image Source="C:\Users\Настя\Pictures\forward.png"></Image>
+        </Button>
+        <Button x:Name="Again" Grid.Column="3" Grid.Row="4" Click="Again_Click" >
+            <Image Source="C:\Users\Настя\Pictures\refresh.png"></Image>
+        </Button>
+        <Button x:Name="Mix" Grid.Column="4" Grid.Row="4" Click="Mix_Click">
+            <Image Source="C:\Users\Настя\Pictures\random.png"></Image>
+        </Button>
+        <ListBox x:Name="List" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2" Margin="32,0,52,0"/>
     </Grid>
 </Window>
