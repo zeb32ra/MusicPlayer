@@ -28,7 +28,6 @@ namespace MusicPlayer
         List<string> filesList_for_media = new List<string>();
         List<string> filesList_for_listbox = new List<string>();
         int selected_index = 0;
-        // flag for choosing again
         bool play = true;
         bool play_again= false;
         bool mixing= false;
