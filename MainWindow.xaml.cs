@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -65,13 +67,17 @@ namespace MusicPlayer
                 List.SelectedIndex = selected_index;
                 media.Volume = Volume_slide.Value / 100;
                 media.Play();
-                // thread start
+                Thread thread = new Thread(_ =>
+                {
+                    potok();
+                });
+                thread.Start();
             }
         }
 
         private void Length_slide_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            media.Position = new TimeSpan(Convert.ToInt64(Length_slide.Value));
         }
 
         private void Previous_Click(object sender, RoutedEventArgs e)
@@ -90,6 +96,7 @@ namespace MusicPlayer
                 List.SelectedIndex = copy.IndexOf(filesList_for_media[selected_index - 1]);
                 selected_index -= 1;
             }
+            
         }
 
         private void Play_Pause_Click(object sender, RoutedEventArgs e)
@@ -108,21 +115,7 @@ namespace MusicPlayer
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            if (play_again)
-            {
-                media.Source = new Uri(filesList_for_media[selected_index]);
-            }
-            else
-            {
-                if (selected_index == filesList_for_media.Count - 1)
-                {
-                    selected_index = -1;
-                }
-                media.Source = new Uri(filesList_for_media[selected_index + 1]);
-                List.SelectedIndex = copy.IndexOf(filesList_for_media[selected_index + 1]);
-                selected_index += 1;
-            }
-            
+            Next_song(); 
         }
 
         private void Again_Click(object sender, RoutedEventArgs e)
@@ -164,5 +157,46 @@ namespace MusicPlayer
             media.Volume = Volume_slide.Value / 100;
         }
 
+        private void potok()
+        {
+            while (play)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    Length_slide.Value = System.Convert.ToDouble(media.Position.Ticks);
+                    Now_sec.Text = Convert.ToInt64(Length_slide.Value).ToString();
+                    Left_sec.Text = Convert.ToInt64(Length_slide.Maximum - Length_slide.Value).ToString();
+                    if(System.Convert.ToDouble(media.Position.Ticks) == Length_slide.Maximum)
+                    {
+                        Next_song();
+                    }
+                });
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void Next_song()
+        {
+            if (play_again)
+            {
+                media.Source = new Uri(filesList_for_media[selected_index]);
+            }
+            else
+            {
+                if (selected_index == filesList_for_media.Count - 1)
+                {
+                    selected_index = -1;
+                }
+                media.Source = new Uri(filesList_for_media[selected_index + 1]);
+                List.SelectedIndex = copy.IndexOf(filesList_for_media[selected_index + 1]);
+                selected_index += 1;
+            }
+            
+        }
+
+        private void media_opened(object sender, RoutedEventArgs e)
+        {
+            Length_slide.Maximum = media.NaturalDuration.TimeSpan.Ticks;
+        }
     }
 }

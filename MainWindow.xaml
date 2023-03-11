@@ -24,10 +24,10 @@
 
         </Grid.ColumnDefinitions>
         <Button x:Name="Papka" Content="Выберите папку" Grid.ColumnSpan="6" Grid.Row="0" VerticalAlignment="Center" Click="Papka_Click"/>
-        <MediaElement x:Name="media" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" LoadedBehavior="Manual"/>
+        <MediaElement x:Name="media" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" LoadedBehavior="Manual" MediaOpened="media_opened"/>
         <Slider x:Name="Length_slide"  Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="5" ValueChanged="Length_slide_ValueChanged"/>
-        <TextBlock HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Grid.Column="0"><Run Language="ru-ru" Text="Текущие секунды"/></TextBlock>
-        <TextBlock Grid.Column="4" Grid.Row="3" VerticalAlignment="Center" ><Run Language="ru-ru" Text="Сколько оосталось"/></TextBlock>
+        <TextBlock x:Name="Now_sec" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Grid.Column="0"><Run Language="ru-ru" Text="Текущие секунды"/></TextBlock>
+        <TextBlock x:Name="Left_sec" Grid.Column="4" Grid.Row="3" VerticalAlignment="Center" ><Run Language="ru-ru" Text="Сколько оосталось"/></TextBlock>
         <Slider x:Name="Volume_slide" Grid.Column="5"  Grid.Row="4" ValueChanged="Volume_slide_ValueChanged"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="4" ><Run Language="ru-ru" Text="Звук"/></TextBlock>
         <Button x:Name="Previous" Grid.Row="4"  Grid.Column="0" Click="Previous_Click">
