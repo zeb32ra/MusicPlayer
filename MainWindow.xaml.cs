@@ -34,6 +34,7 @@ namespace MusicPlayer
         bool mixing= false;
         Random random = new Random();
         List<string> copy = new List<string>();
+        bool next = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +42,13 @@ namespace MusicPlayer
 
         private void Papka_Click(object sender, RoutedEventArgs e)
         {
+            List.Items.Clear();
+            filesList_for_listbox.Clear();
+            filesList_for_media.Clear();
+            copy.Clear();
+            play_again= false;
+            mixing= false;
+            selected_index = 0;
             CommonOpenFileDialog dialog = new CommonOpenFileDialog { IsFolderPicker=true};
             var result = dialog.ShowDialog();
             if (result == CommonFileDialogResult.Ok)
@@ -60,7 +68,11 @@ namespace MusicPlayer
             {
                 selected_index = 0;
 
-                List.ItemsSource = filesList_for_listbox;
+                /*List.ItemsSource = filesList_for_listbox;*/
+                foreach(string i in filesList_for_listbox)
+                {
+                    List.Items.Add(i);
+                }
                 Volume_slide.Value = 70;
                 Volume_slide.Maximum = 100;
                 media.Source = new Uri(filesList_for_media[selected_index]);
@@ -77,6 +89,11 @@ namespace MusicPlayer
 
         private void Length_slide_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            if (next)
+            {
+                Length_slide.Value = 0;
+                next = false;
+            }
             media.Position = new TimeSpan(Convert.ToInt64(Length_slide.Value));
         }
 
@@ -159,15 +176,18 @@ namespace MusicPlayer
 
         private void potok()
         {
-            while (play)
+            while (true)
             {
                 Dispatcher.Invoke(() =>
                 {
                     Length_slide.Value = System.Convert.ToDouble(media.Position.Ticks);
-                    Now_sec.Text = Convert.ToInt64(Length_slide.Value).ToString();
-                    Left_sec.Text = Convert.ToInt64(Length_slide.Maximum - Length_slide.Value).ToString();
-                    if(System.Convert.ToDouble(media.Position.Ticks) == Length_slide.Maximum)
+                    Now_sec.Text = new TimeSpan(Convert.ToInt64(Length_slide.Value)).ToString(@"mm\:ss");
+                    Left_sec.Text = new TimeSpan(Convert.ToInt64(Length_slide.Maximum - Length_slide.Value)).ToString(@"mm\:ss");
+                    double a = Convert.ToDouble(media.Position.Ticks);
+                    double b = Length_slide.Maximum;
+                    if (Convert.ToDouble(media.Position.Ticks) == Length_slide.Maximum)
                     {
+                        next = true;
                         Next_song();
                     }
                 });
